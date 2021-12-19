@@ -21,19 +21,6 @@ const category = async (req, res, next) => {
 const newCategory = async (req, res) => {
 
     const { name, description } = req.body
-    console.log(req.body)
-
-    if(!name) {
-        return res.status(400).json({
-            error: 'name is missing'
-        })
-    }
-
-    if(!description) {
-        return res.status(400).json({
-            error: 'description is missing'
-        })
-    }
 
     const newCategory = new Category({
         name: name,

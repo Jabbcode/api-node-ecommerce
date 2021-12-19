@@ -3,7 +3,6 @@ const Product = require("../models/Product")
 
 const allProducts = async (req, res) => {
     const products = await Product.find().populate('category')
-
     res.status(200).json(products)
 }
 
@@ -21,13 +20,11 @@ const newProduct = async (req, res) => {
         title, 
         description, 
         price, 
-        stock, 
-        quantity_sold, 
+        stock,
         categoryId
     } = req.body
 
     const category = await Category.findById(categoryId)
-    console.log(category)
 
     if(!title) {
         return res.status(400).json({
@@ -53,7 +50,7 @@ const newProduct = async (req, res) => {
         // link_img: '',
         price: price,
         stock: stock,
-        quantity_sold: quantity_sold,
+        quantity_sold: 0,
         category: category
     })
 
@@ -66,7 +63,7 @@ const newProduct = async (req, res) => {
         // link_img: '',
         price: price,
         stock: stock,
-        quantity_sold: quantity_sold,
+        quantity_sold: 0,
         category: category
     });
 }

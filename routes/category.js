@@ -10,8 +10,8 @@ router.get('/', allCategories)
 router.get('/:id', category)
 
 router.post('/', [
-	check('name', 'El nombre de la categoria es oblitario').not().isEmpty(),
-	check('descripcion', 'La descripcion de la categoria es oblitaria').not().isEmpty(),
+	check('name', 'El nombre de la categoria es obligatorio').not().isEmpty(),
+	check('description', 'La descripcion de la categoria es obligatoria').not().isEmpty(),
 	validarCampos
 ], newCategory)
 

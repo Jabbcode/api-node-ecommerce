@@ -1,8 +1,10 @@
-const { validatorResult } = require('express-validator')
+const { validationResult } = require('express-validator')
 
 const validarCampos = ( req, res, next ) => {
 
-    const errors = validatorResult( req ) 
+    const errorFormatter = (({ msg }) => msg);
+
+    const errors = validationResult(req).formatWith(errorFormatter);
 
     if( !errors.isEmpty() ) {
         return res.status(400).json({
