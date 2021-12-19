@@ -11,14 +11,13 @@ app.use( cors() )
 
 app.use(express.json()) // bodyParser
 
-
 app.use('/api/products', require('./routes/product'))
 
 app.use('/api/categories', require('./routes/category'))
 
 app.use('/api/users', require('./routes/user'))
 
-
+app.use('/api/types-users', require('./routes/typeUser'))
 
 app.listen( process.env.PORT , () => {
     console.log(`Servidor corriendo en el puerto ${ process.env.PORT }`)

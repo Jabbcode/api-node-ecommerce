@@ -1,17 +1,21 @@
 const User = require('../models/User')
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
+const TypeUser = require('../models/TypeUser');
 
 
 const allUsers = async(req, res) => {
 
-    const users = await User.find();
+    const users = await User.find()
     res.status(200).json(users)
 }
 
 const newUser = async (req, res) => {
 
-    const { name, email, password } = req.body
+    const { name, email, password, typeId } = req.body
     console.log(req.body)
+
+    const type = await TypeUser.findById(typeId)
+
 
     if(!name) {
         return res.status(400).json({
@@ -34,7 +38,8 @@ const newUser = async (req, res) => {
     const newUser = new User({
         name: name,
         email: email,
-        password: password
+        password: password,
+        type: type
     })
 
     // Hashear la contraseña
@@ -46,7 +51,8 @@ const newUser = async (req, res) => {
     res.status(201).json({
         id: newUser._id,
         name: name,
-        email: email
+        email: email,
+        type: type
     });
 }
 
